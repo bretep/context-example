@@ -1,24 +1,36 @@
 <page>
-    <actionBar title="Home" />
-    <gridLayout>
+    <actionBar title="Home"/>
+    <stackLayout>
         <label class="info">
             <formattedString>
-                <span class="fas" text="&#xf135;" />
-                <span text=" {message}" />
+                <span text=" {$testInformation}"/>
             </formattedString>
         </label>
-    </gridLayout>
+        <button text="Increment" on:tap="{increment}"/>
+        <button text="Navigate to next page" on:tap="{nextPage}"/>
+    </stackLayout>
 </page>
 
 <script lang="ts">
+    import {getContext} from "svelte";
+    import {navigate} from "svelte-native";
+    import Home2 from "./Home2.svelte";
+
     let message: string = "Blank Svelte Native App"
+    const {testInformation, increment} = getContext("test")
+
+    const nextPage = () => {
+        navigate({
+            page: Home2,
+            clearHistory: true,
+            // props: {currentUserId: user.uid},
+            animated: false
+        })
+    }
+
 </script>
 
 <style>
-    .info .fas {
-        color: #3A53FF;
-    }
-
     .info {
         font-size: 20;
         horizontal-align: center;
