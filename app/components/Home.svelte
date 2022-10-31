@@ -16,14 +16,12 @@
     import {navigate} from "svelte-native";
     import Home2 from "./Home2.svelte";
 
-    let message: string = "Blank Svelte Native App"
     const {testInformation, increment} = getContext("test")
 
     const nextPage = () => {
         navigate({
             page: Home2,
             clearHistory: true,
-            // props: {currentUserId: user.uid},
             animated: false
         })
     }
